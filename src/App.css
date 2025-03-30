@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f4f4f9;
+  transition: background-color 0.3s ease;
 }
 
 .app {
@@ -9,6 +10,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 .counter-container {
@@ -17,18 +19,27 @@ body {
   padding: 20px 30px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .counter-container {
+  background-color: #333;
+  color: #fff;
+}
+
+.light-mode .counter-container {
+  background-color: #fff;
+  color: #333;
 }
 
 .counter-heading {
   font-size: 2rem;
-  color: #333;
   margin-bottom: 20px;
 }
 
 .counter-value {
   font-size: 3rem;
   font-weight: bold;
-  color: #555;
   margin-bottom: 20px;
   transition: all 0.3s ease;
 }
@@ -63,8 +74,31 @@ body {
   color: white;
 }
 
-.button:hover {
+
+.button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
   opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+
+.toggle-dark-mode {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.toggle-dark-mode:hover{
+  background-color: #555;
 }
 
 @media (max-width: 600px) {
