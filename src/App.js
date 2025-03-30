@@ -5,9 +5,8 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const minCount = 0;
-  const maxCount = 100;
+  const [minCount, setMinCount] = useState(0);
+  const [maxCount, setMaxCount] = useState(100);
 
   useEffect(() => {
     const savedCount = localStorage.getItem("counter");
@@ -19,17 +18,22 @@ function App() {
     if (savedMode !== null) {
       setIsDarkMode(JSON.parse(savedMode));
     }
+
+    const savedMin = localStorage.getItem("minCount");
+    const savedMax = localStorage.getItem("maxCount");
+    if (savedMin && savedMax) {
+      setMinCount(Number(savedMin));
+      setMaxCount(Number(savedMax));
+    }
   }, []);
 
 
   useEffect(() => {
     localStorage.setItem("counter", count);
-  }, [count]);
-
-  useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
-  }, [isDarkMode]);
-
+    localStorage.setItem("minCount", minCount);
+    localStorage.setItem("maxCount", maxCount);
+  }, [count, isDarkMode, minCount, maxCount]);
 
   const animatedProps = useSpring({
     number: count,
@@ -52,6 +56,14 @@ function App() {
 
   const toggleDarkMode = () => {
     setIsDarkMode (!isDarkMode);
+  };
+
+  const handleMinChange = (e) => {
+    setMinCount(Number(e.target.value));
+  };
+
+  const handleMaxChange = (e) => {
+    setMaxCount(Number(e.target.value));
   };
 
   return (
@@ -88,6 +100,23 @@ function App() {
         >
           Toggle Dark Mode
         </button>
+
+        <div className="range-settings">
+          <label>Min Count:</label>
+          <input
+            type="number"
+            value={minCount}
+            onChange={handleMinChange}
+            min={0}
+          />
+          <label>Max Count:</label>
+          <input
+            type="number"
+            value={maxCount}
+            onChange={handleMaxChange}
+            min={minCount + 1}
+          />
+        </div>
       </div>
     </div>
   );

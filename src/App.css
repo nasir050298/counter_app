@@ -101,6 +101,64 @@ body {
   background-color: #555;
 }
 
+.range-settings {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.range-settings label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.range-settings input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.range-settings input:focus {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+.range-settings input:disabled {
+  background-color: #f0f0f0;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+
+.range-settings input[type="number"]::-webkit-outer-spin-button,
+.range-settings input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.range-settings input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.dark-mode .range-settings input {
+  background-color: #333;
+  color: #fff;
+  border-color: #444;
+}
+
+.dark-mode .range-settings input:focus {
+  border-color: #4caf50;
+  background-color: #444;
+}
+
+
 @media (max-width: 600px) {
   .counter-container {
     padding: 20px;
