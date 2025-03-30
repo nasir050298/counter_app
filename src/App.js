@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    const savedCount = localStorage.getItem("counter");
+    if (savedCount !== null) {
+      setCount(Number(savedCount));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("counter", count);
+  }, [count]);
+
+  const animatedProps = useSpring({
+    number: count,
+    from: { number: 0 },
+    reset: true,
+    config: { tension: 150, friction: 20 },
+  });
   const increment = () => {
     setCount(count + 1);
   };
