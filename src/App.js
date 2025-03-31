@@ -66,6 +66,8 @@ function App() {
     setMaxCount(Number(e.target.value));
   };
 
+  const progressPercentage = ((count - minCount) / (maxCount - minCount))*100;
+
   return (
     <div className={`app ${isDarkMode ? "dark-mode" : "light-mode"}`}>
       <div className="counter-container">
@@ -73,6 +75,14 @@ function App() {
         <animated.div className = "counter-value">
         {animatedProps.number.to((n) => n.toFixed(0))}
         </animated.div>
+
+        <div className="progress-bar-container">
+          <div
+            className="progress-bar"
+            style={{ width: `${progressPercentage}%` }}
+          ></div>
+        </div>
+
         <div className="button-group">
           <button 
           className="button increment" 
